@@ -100,8 +100,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\OgreTutorialApp\OgreWikiTutorialFramework_1-9\BaseApplication.h" />
-    <ClInclude Include="..\..\OgreTutorialApp\OgreWikiTutorialFramework_1-9\TutorialApplication.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TutorialApplication.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

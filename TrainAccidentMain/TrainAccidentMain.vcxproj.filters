@@ -32,7 +32,7 @@
     <ClInclude Include="..\..\OgreTutorialApp\OgreWikiTutorialFramework_1-9\BaseApplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\OgreTutorialApp\OgreWikiTutorialFramework_1-9\TutorialApplication.h">
+    <ClInclude Include="TutorialApplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

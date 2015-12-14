@@ -30,17 +30,10 @@ TutorialApplication::~TutorialApplication(void)
 }
 
 //---------------------------------------------------------------------------
-void TutorialApplication::createScene(void)
+void TutorialApplication::createLightsAndShadows(void)
 {
 	mSceneMgr->setAmbientLight(Ogre::ColourValue(0.3, 0.3, 0.3));
-	mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
-	Ogre::Entity* wagon = mSceneMgr->createEntity(Ogre::SceneManager::PT_CUBE);
-	wagon->setMaterialName("Examples/BumpyMetal");
-	Ogre::SceneNode* wagonNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-	wagonNode->attachObject(wagon);
-	wagonNode->translate(Ogre::Vector3(0, 65, 100));
-	wagonNode->scale(Ogre::Vector3(6, 1, 1));
 	Ogre::Light* light = mSceneMgr->createLight("MainLight");
 	light->setPosition(20, 80, 50);
 
@@ -50,8 +43,22 @@ void TutorialApplication::createScene(void)
 	directionalLight->setSpecularColour(Ogre::ColourValue(.7, .7, 0));
 	directionalLight->setDirection(Ogre::Vector3(0.7, -0.7, -1));
 
+	mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+}
+//---------------------------------------------------------------------------
+void TutorialApplication::createWagon(void)
+{
+	Ogre::Entity* wagon = mSceneMgr->createEntity(Ogre::SceneManager::PT_CUBE);
+	wagon->setMaterialName("Examples/BumpyMetal");
+	Ogre::SceneNode* wagonNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
+	wagonNode->attachObject(wagon);
+	wagonNode->translate(Ogre::Vector3(0, 65, 100));
+	wagonNode->scale(Ogre::Vector3(6, 1, 1));
+}
+//---------------------------------------------------------------------------
+void TutorialApplication::createGround(void)
+{
 	Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
-
 	Ogre::MeshManager::getSingleton().createPlane(
 		"ground",
 		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
@@ -64,6 +71,18 @@ void TutorialApplication::createScene(void)
 	mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(groundEntity);
 	groundEntity->setCastShadows(false);
 	groundEntity->setMaterialName("Examples/GrassFloor");
+}
+//---------------------------------------------------------------------------
+void TutorialApplication::createEntities(void)
+{
+	createWagon();
+	createGround();
+}
+//---------------------------------------------------------------------------
+void TutorialApplication::createScene(void)
+{
+	createLightsAndShadows();
+	createEntities();
 
 	mCamera->moveRelative(Ogre::Vector3(0, 400, 1500));
 }

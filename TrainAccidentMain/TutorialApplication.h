@@ -33,6 +33,12 @@ protected:
 	virtual void createScene(void);
 	//virtual void createCamera();
 	//virtual void createViewports();
+
+private:
+	void createLightsAndShadows(void);
+	void createWagon(void);
+	void createGround(void);
+	void createEntities(void);
 };
 
 //---------------------------------------------------------------------------
